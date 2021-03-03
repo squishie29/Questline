@@ -1,0 +1,21 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Review{% endblock %}
+
+{% block body %}
+    <h1>Review</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Comment</th>
+                <td>{{ review.comment }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ review.rating }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
