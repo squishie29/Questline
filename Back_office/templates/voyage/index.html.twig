@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voyages{% endblock %}
+
+{% block body %}
+    <h1>Voyages</h1>
+
+    <table class="table" border="2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Destination</th>
+                <th>Prix</th>
+                <th>Periode</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voyage in voyages %}
+            <tr>
+                <td>{{ voyage.id }}</td>
+                <td>{{ voyage.Destination }}</td>
+                <td>{{ voyage.Prix }}</td>
+                <td>{{ voyage.Periode }}</td>
+                <td>
+                    <a href="{{ path('voyage_show', {'id': voyage.id}) }}">show</a>
+                    <a href="{{ path('voyage_edit', {'id': voyage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<br> <br>
+   <center><a href="{{ path('voyage_new') }}"><button type="submit" class="btn btn-primary mt-3" class="btn" class="btn">Add</button></a></center>
+{% endblock %}
