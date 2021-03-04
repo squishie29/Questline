@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel index{% endblock %}
+
+{% block body %}
+    <div class="table-responsive" style="margin-top:10px;">
+    <h4 style="margin: 5px;">Hotel index</h4>
+    <table class="table table-bordered table-hover table-striped mb-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Stars</th>
+                <th>Photo</th>
+                <th>Description</th>
+                <th>Adress</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.name }}</td>
+                <td>{{ hotel.stars }}</td>
+                <td>{{ hotel.photo }}</td>
+                <td>{{ hotel.description }}</td>
+                <td>{{ hotel.adress }}</td>
+                <td>
+                    <a href="{{ path('hotel_show', {'id': hotel.id}) }}" >show</a>
+                    <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a  class="btn-outline-primary" href="{{ path('hotel_new') }}">ADD NEW </a>
+
+    </div>
+
+
+{% endblock %}
