@@ -1,0 +1,23 @@
+{% extends 'front.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        {% for d in destinations %}
+
+
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+            
+                <div class="card-body">
+
+                    <p class="card-text">{{d.id_dest }} </p>
+                    <p class="card-text"> {{d.date }}</p>
+                     <p class="card-text">{{d.nom }} </p>
+                    
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

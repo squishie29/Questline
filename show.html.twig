@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Voyage{% endblock %}
+{% block title %}Vol{% endblock %}
 
 {% block body %}
-    <h1>Voyage</h1>
+    <h1>Vol</h1>
 
-    <table class="table" border="2">
-        <tbody>
+    <table class="table">
+        <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ voyage.id }}</td>
-            </tr>
-            <tr>
-                <th>Destination</th>
-                <td>{{ voyage.Destination }}</td>
-            </tr>
-            <tr>
+                <th>Horaire</th>
                 <th>Prix</th>
-                <td>{{ voyage.Prix }}</td>
+                <th>Nombre de place</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
-                <th>Periode</th>
-                <td>{{ voyage.Periode }}</td>
-            </tr>
+               
+                <td>{{ vol.id }}</td>
+            
+            
+                <td>{{ vol.date ? vol.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vol.prix }}</td>
+                <td>{{ vol.nbplace }}</td>
+            
         </tbody>
     </table>
+{{ include('vol/_delete_form.html.twig') }}
+    <center><a type="submit" class="btn btn-primary mt-3" class="btn" href="{{ path('vol_index') }}">back to list</a>
+</center>
+    
 
-    <a href="{{ path('voyage_index') }}">back to list</a>
-
-    <a href="{{ path('voyage_edit', {'id': voyage.id}) }}">edit</a>
-
-    {{ include('voyage/_delete_form.html.twig') }}
+    
+    
+                             
 {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReservationVol index{% endblock %}
+
+{% block body %}
+    
+
+    <center><table class="table">
+        <thead>
+            <tr>
+                <th>Id_res</th>
+                <th>Nombre_personne</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ReservationVol in ReservationVols %}
+            <tr>
+                <td>{{ ReservationVol.id_res }}</td>
+                <td>{{ ReservationVol.Nombre_personne }}</td>
+                <td>{{ ReservationVol.Date_debut ? ReservationVol.Date_debut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ReservationVol.Date_fin ? ReservationVol.Date_fin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                   <div class="btn-group">
+                                                    <button type="button" class="btn btn-dark btn-sm">Open</button>
+                                                    <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
+                                                      <a class="dropdown-item" href="{{ path('ReservationVol_show', {'id_res': ReservationVol.id_res}) }}">Afficher</a>
+                                                      <a class="dropdown-item" href="{{ path('ReservationVol_edit', {'id_res': ReservationVol.id_res}) }}">Modifier</a>
+                                                     
+                                                      
+                                                  </div> 
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a type="button" class="btn btn-dark btn-sm" href="{{ path('ReservationVol_new') }}" > Ajouter </a>
+</center>
+      
+{% endblock %}

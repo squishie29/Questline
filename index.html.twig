@@ -1,34 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voyages{% endblock %}
+{% block title %}Vol index{% endblock %}
 
 {% block body %}
-    <center>
-    <h1>Voyages</h1>
+    
 
-    <table class="table" border="3">
+    <center><table class="table">
         <thead>
-            <tr >
-                <th><h6>Id</h6></th>
-                <th><h6>Destination</h6></th>
-                <th><h6>Prix</h6></th>
-                <th><h6>Periode</h6></th>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Prix</th>
+                <th>Nbplace</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for voyage in voyages %}
+        {% for vol in vols %}
             <tr>
-                <td>{{ voyage.id }}</td>
-                <td>{{ voyage.Destination }}</td>
-                <td>{{ voyage.Prix }}</td>
-                <td>{{ voyage.Periode }}</td>
+                <td>{{ vol.id }}</td>
+                <td>{{ vol.date ? vol.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vol.prix }}</td>
+                <td>{{ vol.nbplace }}</td>
+                <td>
+                    <a type="button"class="btn btn-dark btn-sm" href="{{ path('vol_show', {'id': vol.id}) }}">show</a>
+                    <a type="button"class="btn btn-dark btn-sm" href="{{ path('vol_edit', {'id': vol.id}) }}">edit</a>
+
+                </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    </center>
-{% endblock %}
+
+<a type="button" class="btn btn-dark btn-sm" href="{{ path('vol_new') }}" > Ajouter </a>
+</center>{% endblock %}                   
