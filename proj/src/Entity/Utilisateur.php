@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  */
-class Utilisateur
+class Utilisateur implements UserInterface,\Serializable
 {
     /**
      * @ORM\Id
@@ -21,23 +22,33 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     * pattern="/\d/",
+     * match=false,
+     * message="Your name cannot contain a number"
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=10)
      * @Assert\NotBlank()
-     * @Assert\Length(min=10) 
+     *  @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=255)
      */
     private $mdp;
 
@@ -136,4 +147,49 @@ class Utilisateur
     public function __toString(){
         return $this->nom;
     }
+    public function getRoles(){
+        return ['ROLE_ADMIN'];
+    }
+    public function getSalt(){
+        return null;
+    }
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->mdp,
+    ]);
+    }
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
+        list(
+            $this->id,
+            $this->email,
+            $this->mdp,
+            ) = unserialize($serialized,['allowed_classes' => false]);
+
+    }
+    public function getUsername(): ?string
+    {
+        // TODO: Implement getUsername() method.
+
+        return $this->getEmail();
+
+    }
+
+    public function getPassword():  ?string
+    {
+        // TODO: Implement getPassword() method.
+        return $this->getMdp();
+    }
+
+
 }

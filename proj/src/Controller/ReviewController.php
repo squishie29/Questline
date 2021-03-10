@@ -55,7 +55,7 @@ class ReviewController extends AbstractController
     public function show(Review $review): Response
     {
         return $this->render('review/show.html.twig', [
-            'reviews' => $reviews,
+            'review' => $review,
         ]);
     }
 

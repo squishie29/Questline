@@ -13,7 +13,7 @@
     {{form_row(form.email, {'attr': {'class':'form-row'}})}}
     {{form_row(form.mdp, {'attr': {'class':'form-row'}})}}
     
-    <button class="cws-button alt float-right">{{ button_label|default('Save') }}</button>
+    <button class="cws-button alt float-right" formnovalidate>{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
     </div>
 

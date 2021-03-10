@@ -20,6 +20,11 @@ class Review
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
      * 
      *@Assert\NotBlank
      */
@@ -27,6 +32,7 @@ class Review
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^\w+/")
      */
     private $rating;
 
