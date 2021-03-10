@@ -1,0 +1,26 @@
+{% extends 'back.html.twig' %}
+
+{% block container %}
+    <h2>les reservations</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Evenement</th>
+            <th scope="col">Date Reservation</th>
+            <th scope="col">Nombre des participants</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for r in reservations %}
+            <tr>
+                <td>{{ r.event.nom }}</td>
+                <td>{{ r.dateReservation | date }}</td>
+                <td>{{ r.nbrParticipant }}</td>
+                <td><a href="{{ path('suppReservationAdmin',{'id':r.id}) }}">Supprimer</a></td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

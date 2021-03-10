@@ -1,26 +1,29 @@
-{% extends 'back.html.twig' %}
-{% block container %}
-    <h2>List des Categories</h2>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Categorie</th>
-            <th scope="col">Description</th>
-            <th scope="col">Modifier</th>
-            <th scope="col">Supprimer</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for c in categories %}
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+        <h2>Mes reservations</h2>
+        <table class="table table-hover">
+            <thead>
             <tr>
-                <td>{{ c.nom }}</td>
-                <td>{{ c.description }}</td>
-                <td><a href="{{ path('modifierCategorie',{'id':c.id}) }}">Modifier</a></td>
-                <td><a href="{{ path('supprimerCategorie',{'id':c.id}) }}">Supprimer</a></td>
-
+                <th scope="col">Evenement</th>
+                <th scope="col">Date Reservation</th>
+                <th scope="col">Nombre des participants</th>
+                <th>Modifier</th>
+                <th scope="col">Supprimer</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for r in reservations %}
+                <tr>
+                    <td>{{ r.event.nom }}</td>
+                    <td>{{ r.dateReservation | date }}</td>
+                    <td>{{ r.nbrParticipant }}</td>
+                    <td><a href="{{ path('modifReservation',{'id':r.id}) }}">Modifier</a></td>
+                    <td><a href="{{ path('suppReservation',{'id':r.id}) }}">Supprimer</a></td>
 
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}

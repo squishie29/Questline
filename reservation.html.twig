@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>Nombre des places restants {{ nbrRestant }}</p>
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nombre des participants</label>
+        {{ form_widget(form.nbr_participant,{'attr':{'class':'form-control','min':1,'max':nbrRestant}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(form.Reserver,{'attr':{'class':'btn btn-info'}}) }}
+    </div>
+
+    {{ form_end(form) }}
+
+
+{% endblock %}
