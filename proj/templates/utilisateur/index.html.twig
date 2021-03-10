@@ -12,7 +12,10 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Email</th>
+
+                <th>Image</th>
                 <th>Mdp</th>
+
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,7 +26,10 @@
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenom }}</td>
                 <td>{{ utilisateur.email }}</td>
+
+                <td>{{ utilisateur.img }}</td>
                 <td>{{ utilisateur.mdp }}</td>
+
                 <td>
                     <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
                     <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>

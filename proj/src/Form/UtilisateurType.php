@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,6 +17,9 @@ class UtilisateurType extends AbstractType
             ->add('prenom')
             ->add('email')
             ->add('mdp')
+            ->add('img',FileType::class, [
+                'mapped' => false,
+                'required' => false,])
         ;
     }
 

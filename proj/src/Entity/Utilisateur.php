@@ -57,6 +57,11 @@ class Utilisateur implements UserInterface,\Serializable
      */
     private $idrev;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $img;
+
     public function __construct()
     {
         $this->idrev = new ArrayCollection();
@@ -189,6 +194,18 @@ class Utilisateur implements UserInterface,\Serializable
     {
         // TODO: Implement getPassword() method.
         return $this->getMdp();
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
     }
 
 
