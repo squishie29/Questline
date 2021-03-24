@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Hotel;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +16,17 @@ class HotelType extends AbstractType
         $builder
             ->add('name')
             ->add('stars')
-            ->add('photo')
-            ->add('description')
+            ->add('photo',FileType::class, [
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+                'required' => false,])
+            ->add('description', CKEditorType::class, [
+                'config'=> [
+                    'uiColor' => "#e2e2e2",
+                    'toolbar' => 'full',
+                    'required' => true
+                ]
+            ])
             ->add('adress')
         ;
     }

@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\Options;
 use App\Form\OptionsType;
 use App\Repository\OptionsRepository;
+use Omines\DataTablesBundle\Adapter\ArrayAdapter;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +22,28 @@ class OptionsController extends AbstractController
     /**
      * @Route("/", name="options_index", methods={"GET"})
      */
-    public function index(OptionsRepository $optionsRepository): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory,OptionsRepository $optionsRepository)
     {
+        $table = $dataTableFactory->create()
+
+            ->add('description', TextColumn::class,['label' => 'Description','searchable'=>true])
+            ->add('room_id', TextColumn::class,['field' => 'room_id.id','label' => 'Room Id','searchable'=>false])
+            ->add('id', TextColumn::class, ['orderable'=> false,'label' => 'ACTION','searchable'=>false,'render' => function($value, $context) {
+                return sprintf('<a href="%u">SHOW</a> <a href="%d/edit">EDIT</a>', $value,$value);
+            }])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => Options::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         return $this->render('options/index.html.twig', [
+            'datatable' => $table,
             'options' => $optionsRepository->findAll(),
+
         ]);
     }
 
@@ -49,7 +71,7 @@ class OptionsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="options_show", methods={"GET"})
+     * @Route("/{id}", name="options_show", methods={"GET"},requirements={"id"="\d+"})
      */
     public function show(Options $option): Response
     {
@@ -91,4 +113,9 @@ class OptionsController extends AbstractController
 
         return $this->redirectToRoute('options_index');
     }
+
+
+
 }
+
+

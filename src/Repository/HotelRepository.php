@@ -19,6 +19,17 @@ class HotelRepository extends ServiceEntityRepository
         parent::__construct($registry, Hotel::class);
     }
 
+    public function findHotelByName($name){
+        return $this->createQueryBuilder('hotel')
+            ->where('hotel.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
     // /**
     //  * @return Hotel[] Returns an array of Hotel objects
     //  */
@@ -47,4 +58,16 @@ class HotelRepository extends ServiceEntityRepository
         ;
     }
     */
+   public function findEntitiesByString($value)
+   {
+       return $this->createQueryBuilder('h')
+           ->andWhere('h.name = :val')
+           ->setParameter('val', $value)
+           ->orderBy('h.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+           ;
+   }
+
 }

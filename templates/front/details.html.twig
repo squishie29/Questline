@@ -21,6 +21,7 @@
                 <div id="flex-slider" class="flexslider">
                     <ul class="slides">
 
+
                         {% for gallery in galleries %}
                             {% if hotel.name==gallery.hotel_id %}
                             <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
@@ -43,7 +44,7 @@
                 <h4 class="mb-20">{{ hotel.name }}</h4>
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="mb-15">{{ hotel.description }}</p>
+                        <p class="mb-15">{{ hotel.description|raw }}</p>
                     </div>
                     <div class="col-md-4">
                         <div class="bg-gray-3 p-30-40">
@@ -59,6 +60,7 @@
 
                                      {% endif %}
                                 {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@
                             <th>Max.</th>
                             <th>Options</th>
                             <th>Today's price</th>
-                            <th>Booking</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -132,45 +134,46 @@
                         {% if hotel.name==room.idHotel %}
                         <tr>
 
-                            <td> <img src="pic/190x130.jpg" data-at2x="pic/190x130@2x.jpg" alt>
+                            <td>
                                 <h6>{{ room.type }}</h6>
 
                             </td>
                             <td>
                                 <div class="table-icon">
                                     {% for i in 1..room.nbPersonnes %}
-                                    </i><i class="flaticon-people">
+                                    <i class="flaticon-people"></i>
                                         {% endfor %}
                                 </div>
 
-                                <i class="flaticon-people">
 
                             </td>
                             <td>
 
                                 <ul class="style-1">
-                                    {% for room in rooms %}
-                                        {% if hotel.name==room.idHotel %}
-                                            {% for option in options %}
-                                                {% if room.id2==option.room_id %}
-                                                    <li> {{ option.description}}</li>
-                                                    <br>
-                                                {% endif %}
-                                            {% endfor %}
+                            {% for option in options %}
+                                    {% if room.id2==option.room_id %}
+                                        <li>{{ option.description}}</li>
+                                        <br>
+                                    {% endif %}
+                                {% endfor %}
 
-                                        {% endif %}
-                                    {% endfor %}
 
                                 </ul>
 
                             </td>
                             <td class="room-price">{{ room.prix }} TND</td>
-                            <td> <a href="#" class="cws-button alt gray">Book now</a></td>
+
+                             <td> <p>{{ room.description }}</p></td>
                         </tr>
                         {% endif %}
                         {% endfor %}
+
                         </tbody>
+
                     </table>
+                    <div style="display:flex;justify-content:space-around;margin-top: 10px;">
+                        <a href="{{ path('reservationNew', {'id': hotel.id}) }}" class="cws-button alt " style="width: 20vw;">Book now 1</a>
+                    </div>
                 </div>
             </div>
             <!-- section location-->
@@ -180,8 +183,65 @@
                         <h4 class="trans-uppercase mb-10">Location</h4>
                         <div class="cws_divider mb-30"></div>
                         <!-- google map-->
-                        <div class="map-wrapper">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25295.930156304785!2d16.371063311644324!3d48.208404844730474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07986fcad78b%3A0x73f5a4d267cc4174!2zTmFnbGVyZ2Fzc2UgMTAsIDEwMTAgV2llbiwg0JDQstGB0YLRgNC40Y8!5e0!3m2!1sru!2sua!4v1453294615596" allowfullscreen=""></iframe>
+                        <div >
+                            <div id="map"></div>
+                            <div id="floating-panel">
+                                <input id="address" type="textbox" value="Sydney, NSW" />
+                                <input id="submit" type="button" value="Geocode" />
+                            </div>
+                            <style type="text/css">
+                                /* Always set the map height explicitly to define the size of the div
+                                 * element that contains the map. */
+                                #map {
+                                    height: 40vh;
+                                }
+
+
+                                #floating-panel {
+                                    position: absolute;
+                                    top: 10px;
+                                    left: 25%;
+                                    z-index: 5;
+                                    background-color: #fff;
+                                    padding: 5px;
+                                    border: 1px solid #999;
+                                    text-align: center;
+                                    font-family: "Roboto", "sans-serif";
+                                    line-height: 30px;
+                                    padding-left: 10px;
+                                }
+                            </style>
+
+                            <script>
+                                function initMap() {
+                                    const map = new google.maps.Map(document.getElementById("map"), {
+                                        zoom: 8,
+                                        center: { lat: 36.8755937, lng: 10.1840593 },
+                                    });
+                                    
+                                }
+
+                                function geocodeAddress(geocoder, resultsMap) {
+                                    const address = document.getElementById("address").value;
+                                    geocoder.geocode({ address: address }, (results, status) => {
+                                        if (status === "OK") {
+                                            resultsMap.setCenter(results[0].geometry.location);
+                                            new google.maps.Marker({
+                                                map: resultsMap,
+                                                position: results[0].geometry.location,
+                                            });
+                                        } else {
+                                            alert(
+                                                "Geocode was not successful for the following reason: " + status
+                                            );
+                                        }
+                                    });
+                                }
+                            </script>
+                            <script
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdFbBA2--2BK9a7MpjL-cyvPU0M_rUETA&callback=initMap&libraries=&v=weekly"
+                                    async
+                            ></script>
                         </div>
                         <ul class="icon inline mt-20">
                             <li> <a href="#">9300 Meadow Lane, Kalamazoo, MI 49009<i class="flaticon-suntour-map"></i></a></li>

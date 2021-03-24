@@ -6,6 +6,8 @@ use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,6 +19,7 @@ class Room
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:rooms")
      */
     private $id;
 
@@ -26,16 +29,19 @@ class Room
      *     pattern="/^[1-4]+$/",
      *     message="maximum number of people in the room between 1 and 4"
      * )
+     * @Groups("post:rooms")
      */
     private $nb_personnes;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:rooms")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:rooms")
      */
     private $type;
 
@@ -45,23 +51,30 @@ class Room
      *     value=0,
      *     message="price must be positive"
      * )
+     * @Groups("post:rooms")
      */
     private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("post:rooms")
+     * @MaxDepth(1)
      */
     private $idHotel;
 
     /**
      * @ORM\OneToMany(targetEntity=Options::class, mappedBy="room_id", orphanRemoval=true)
+     * @Groups("post:rooms")
      */
     public $options;
 
     private $id2;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationHotel::class, mappedBy="roomId", orphanRemoval=true)
+     */
+    private $reservationHotels;
 
     public function __toString()
     {
@@ -72,6 +85,7 @@ class Room
     {
         $this->options = new ArrayCollection();
         $this->options_id = new ArrayCollection();
+        $this->reservationHotels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -132,7 +146,8 @@ class Room
         return $this;
     }
 
-    public function getIdHotel(): ?Hotel
+
+    public function getIdHotel(): ?hotel
     {
         return $this->idHotel;
     }
@@ -143,6 +158,7 @@ class Room
 
         return $this;
     }
+
 
     /**
      * @return Collection|Options[]
@@ -168,6 +184,36 @@ class Room
             // set the owning side to null (unless already changed)
             if ($option->getRoomId() === $this) {
                 $option->setRoomId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationHotel[]
+     */
+    public function getReservationHotels(): Collection
+    {
+        return $this->reservationHotels;
+    }
+
+    public function addReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if (!$this->reservationHotels->contains($reservationHotel)) {
+            $this->reservationHotels[] = $reservationHotel;
+            $reservationHotel->setRoomId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if ($this->reservationHotels->removeElement($reservationHotel)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationHotel->getRoomId() === $this) {
+                $reservationHotel->setRoomId(null);
             }
         }
 
