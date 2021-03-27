@@ -1,0 +1,85 @@
+{% extends "index.html.twig"%}
+{% block title %}Liste des vols{% endblock %}
+ {% block stylesheets %}
+     <link rel="stylesheet" href="{{ asset('theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+     <link rel="stylesheet" href="{{ asset('theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+ {% endblock %}
+{% block body %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        {#                        <li class="breadcrumb-item"><a href="{{ path('vol') }}">Home</a></li>#}
+                        <li class="breadcrumb-item active">vols</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Table des vols</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                </div>
+                                <div class="col-sm-6">
+{#                                    {{ form_start(search,{'action': path('search_vols')}) }}#}
+{#                                    {{ form_widget(search)}}#}
+{#                                    {{ form_end(search) }}#}
+                                </div>
+                            </div>
+                            {% if vols %}
+                            <div class="card-body table-responsive p-0">
+                                <table id="#example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>date</th>
+                                        <th>prix</th>
+                                        <th>nbplace</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for vols in vols %}
+                                        <tr>
+                                            <td>{{ vol.id_dest }}</td>
+                                            <td>{{ vol.date }}</td>
+                                            <td>{{ vol.prix }}</td>
+                                            <td>{{ vol.nbplace }}</td>
+                                            <td align="center">
+                                                <a href="{{ path('vol_by_id',{'id':vol.id }) }}" class="btn btn-primary "> <i class="fas fa-eye"></i> Détails</a>
+                                                <a href="{{ path('vol_edit',{'id':vol.id }) }}" class="btn btn-warning"> <i class="fas fa-pencil-alt"></i> Modifier</a>
+                                                <a href="{{ path('vol_delete',{'id':vol.id }) }}" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer vol ?')"> <i class="fas fa-trash"></i> Supprimer</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                    <p>Aucun vol n'a été trouvé</p>
+                                {% endif %}
+                                <br>
+                                {#                                <div class="navigation">#}
+                                {#                                    {{ knp_pagination_render(vols) }}#}
+                                {#                                </div>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+{% endblock %}
