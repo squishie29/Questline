@@ -62,6 +62,11 @@ class Utilisateur implements UserInterface,\Serializable
      */
     private $img;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->idrev = new ArrayCollection();
@@ -152,9 +157,21 @@ class Utilisateur implements UserInterface,\Serializable
     public function __toString(){
         return $this->nom;
     }
-    public function getRoles(){
-        return ['ROLE_ADMIN'];
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
     public function getSalt(){
         return null;
     }

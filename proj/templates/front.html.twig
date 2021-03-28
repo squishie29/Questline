@@ -38,16 +38,16 @@
                 <div class="col-md-6 col-sm-5 text-right">
                     <div class="top-right-wrap">
                     <div class="top-login"><a href="{{ path('sign') }}">Sign in !</a></div>
-                        <div class="top-login"><a href="/front/#">My Account</a></div>
+                        <div class="top-login"><a href="#">My Account</a></div>
                         <div class="curr-wrap dropdown">
                             <div>
                                 <ul>
-                                    <li><a href="/front/#" class="lang-sel icl-en">Currency<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#" class="lang-sel icl-en">Currency<i class="fa fa-angle-down"></i></a>
                                         <ul>
-                                            <li><a href="/front/#">USD</a></li>
-                                            <li><a href="/front/#">EUR</a></li>
-                                            <li> <a href="/front/#">GBP</a></li>
-                                            <li> <a href="/front/#">AUD</a></li>
+                                            <li><a href="#">USD</a></li>
+                                            <li><a href="#">EUR</a></li>
+                                            <li> <a href="#">GBP</a></li>
+                                            <li> <a href="#">AUD</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -56,11 +56,11 @@
                         <div class="lang-wrap dropdown">
                             <div>
                                 <ul>
-                                    <li><a href="/front/#" class="lang-sel icl-en">Language <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#" class="lang-sel icl-en">Language <i class="fa fa-angle-down"></i></a>
                                         <ul>
-                                            <li><a href="/front/#">English</a></li>
-                                            <li> <a href="/front/#">Deutsch</a></li>
-                                            <li> <a href="/front/#">Espanol</a></li>
+                                            <li><a href="#">English</a></li>
+                                            <li> <a href="#">Deutsch</a></li>
+                                            <li> <a href="#">Espanol</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -187,6 +187,11 @@
     <!-- End Navigation panel-->
 </header>
 <!-- ! header page-->
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 {% block body %}  {%  endblock %}
 <!-- footer-->
 <footer style="background-image: url('pic/footer/footer-bg.jpg')" class="footer footer-fixed">
@@ -252,11 +257,11 @@
                 <div class="checkbox">
                     <input id="checkbox30" type="checkbox" value="None" name="check">
                     <label for="checkbox30">Remember Me</label>
-                </div><a href="/front/#">Forgot Password ?</a>
-            </div><a href="/front/#" class="cws-button gray alt full-width mt-20">Login now</a>
+                </div><a href="#">Forgot Password ?</a>
+            </div><a href="#" class="cws-button gray alt full-width mt-20">Login now</a>
         </div>
         <div class="login-bot">
-            <p>No account yet? <a href="/front/#">Register now</a></p>
+            <p>No account yet? <a href="#">Register now</a></p>
         </div>
     </div>
 </div>

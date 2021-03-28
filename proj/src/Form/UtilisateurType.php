@@ -17,6 +17,7 @@ class UtilisateurType extends AbstractType
             ->add('prenom')
             ->add('email')
             ->add('mdp')
+            ->add('roles')
             ->add('img',FileType::class, [
                 'mapped' => false,
                 'required' => false,])

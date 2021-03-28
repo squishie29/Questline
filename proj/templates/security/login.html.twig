@@ -21,7 +21,7 @@
         <button type="submit" class="btn btn-primary">Log in !</button>
             {% if error %}
                 <div class="alert alert-danger">
-                    {{ error}}
+                    {{ error.messageKey}}
                 </div>
             {% endif %}
     </div>
