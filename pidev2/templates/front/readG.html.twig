@@ -1,0 +1,35 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Guides disponibles{% endblock %}
+
+{% block body %}
+    <center>
+<br><br>
+        <h1>Guides disponibles</h1>
+        <a href="{{ path('listDQLG') }}"><button> Trier </button> </a> <br> <br>
+
+        <table class="table" border="1" >
+
+            <tbody>
+            <tr>
+            {% for guide in guides %}
+
+                    <td>
+
+                 <h6><label>Nom :</label>{{ guide.nom }}</h6>
+                 <h6><label>Prenom :</label>{{ guide.prenom }}</h6>
+                 <h6><label>Email :</label>{{ guide.email }}</h6>
+                 <h6><label>Num_tel :</label>{{ guide.numTel }}</h6>
+                 <h6><label>Voyage :</label>{{ guide.voyage.Destination}}</h6>
+             </td>
+
+            {% endfor %}
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+    </center>
+{% endblock %}

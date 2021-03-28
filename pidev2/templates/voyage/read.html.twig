@@ -1,0 +1,86 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Voyages{% endblock %}
+
+{% block body %}
+    <center>
+
+        <div class="navigation">
+            {{ knp_pagination_render(voyages) }}
+        </div>
+        {#  <form method="post" action="{{ path('recherche') }}"> <h5>Chercher un voyage : </h5> <br>
+            <label>Saisir la destination</label> <input type="text" name="search"> <input type="submit" value="Recherche"></form>
+        <label><h6>Filtrer les voyages</h6></label>
+        <input type="text" id="search" class="form-control" placeholder="Saisir la destination">#}
+
+        <br><br>
+
+        <h1>Voyages</h1>
+
+        <script src="{{ asset('js/search.min.js') }}"></script>
+
+        <table class="table" id="tableac" border="1">
+            <thead>
+            <tr>
+                <th><h6>Id</h6></th>
+                <th><h6>Destination</h6></th>
+                <th><h6>Prix</h6></th>
+                <th><h6>Periode</h6></th>
+                <th><h6>Actions</h6></th>
+            </tr>
+            </thead>
+            <tbody>
+            <input type="text" id="search" class="form-control" placeholder="Search"> <br>
+            {% for voyage in voyages %}
+                <tr>
+                    <td> {{ voyage.id }}</td>
+                    <td> {{ voyage.Destination }} </td>
+                    <td>{{ voyage.Prix }}</td>
+                    <td>{{ voyage.Periode }}</td>
+                    <td> <a href="{{ path('updateVoyage',{'id':voyage.id }) }}" > <button type="submit" class="btn btn-primary mt-3" class="btn" class="btn">Modifier</button> </a><br>
+                        <a href="{{ path('deleteVoyage',{'id':voyage.id }) }}" > <button type="submit" class="btn btn-primary mt-3" class="btn" class="btn">supprimer</button></a>
+                    </td>
+
+                    <td> <img src="{{ vich_uploader_asset(voyage) }}" alt="{{ voyage.Destination}}" height="200" width="300"/> </td>
+                </tr>
+
+                <script>
+                    $(document).ready(function(){
+                        $('#search').keyup(function(){
+                            search_table($(this).val());
+                        });
+                        function search_table(value){
+                            $('#tableac tbody tr').each(function(){
+                                var found = 'false';
+                                $(this).each(function(){
+                                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                    {
+                                        found = 'true';
+                                    }
+                                });
+                                if(found == 'true')
+                                {
+                                    $(this).show();
+
+                                }
+                                else
+                                {
+                                    $(this).hide();
+
+                                }
+                            });
+                        }
+                    });
+                </script>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('addVoyage') }}" > <button type="submit" class="btn btn-primary mt-3" class="btn" class="btn"> Ajouter un voyage </button></a> <br>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery-1.11.1.min.js"> </script>
+
+        <script type="text/javascript" src="js/app.js"></script>
+
+    </center>
+
+{% endblock %}

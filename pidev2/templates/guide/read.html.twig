@@ -1,0 +1,73 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Guides disponibles{% endblock %}
+
+{% block body %}
+    <center>
+<br><br>
+        <h1>Guides disponibles</h1>
+        <script src="{{ asset('js/search.min.js') }}"></script>
+
+        <table class="table" border="1" id="tableac">
+            <thead>
+            <tr>
+                <th><h6>Id</h6></th>
+                <th><h6>Voyage</h6></th>
+                <th><h6>Nom</h6></th>
+                <th><h6>Prenom</h6></th>
+                <th><h6>Email</h6></th>
+                <th><h6>Num_tel</h6></th>
+                <th><h6>Actions</h6></th>
+            </tr>
+            </thead>
+            <tbody>
+            <input type="text" id="search" class="form-control" placeholder="Search"> <br>
+            {% for guide in guides %}
+                <tr>
+                    <td>{{ guide.id }}</td>
+                    <td>{{ guide.voyage.Destination}}</td>
+                    <td>{{ guide.nom }}</td>
+                    <td>{{ guide.prenom }}</td>
+                    <td>{{ guide.email }}</td>
+                    <td>{{ guide.numTel }}</td>
+                    <td> <a href="{{ path('updateGuide',{'id':guide.id }) }}" > <button type="submit" class="btn btn-primary mt-3" class="btn" class="btn">Modifier</button></a> <br>
+                        <a href="{{ path('deleteGuide',{'id':guide.id }) }}" ><button type="submit" class="btn btn-primary mt-3" class="btn" class="btn">supprimer</button> </a>
+                    </td>
+
+
+                </tr>
+                <script>
+                    $(document).ready(function(){
+                        $('#search').keyup(function(){
+                            search_table($(this).val());
+                        });
+                        function search_table(value){
+                            $('#tableac tbody tr').each(function(){
+                                var found = 'false';
+                                $(this).each(function(){
+                                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                    {
+                                        found = 'true';
+                                    }
+                                });
+                                if(found == 'true')
+                                {
+                                    $(this).show();
+
+                                }
+                                else
+                                {
+                                    $(this).hide();
+
+                                }
+                            });
+                        }
+                    });
+                </script>
+
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('addGuide') }}" ><button type="submit" class="btn btn-primary mt-3" class="btn" class="btn"> Ajouter un guide </button></a> <br>
+    </center>
+{% endblock %}

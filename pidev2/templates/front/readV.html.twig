@@ -1,0 +1,67 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Voyages{% endblock %}
+
+{% block body %}
+    <div class="navigation">
+        {{ knp_pagination_render(voyages) }}
+    </div>
+        <center>
+
+        <h1>Voyages</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+            {% for voyage in voyages %}
+
+                <td>
+                    <img src="{{ vich_uploader_asset(voyage) }}" alt="{{ voyage.Destination}}" height="350" width="300"/><br></li>
+                    <h6>Destination : <span>{{ voyage.Destination }}</span> </h6>
+                    <h6>Prix :{{ voyage.Prix }}</h6>
+                    <h6>Période :{{ voyage.Periode }}</h6>
+
+                    <a href="{{ path('addPanier',{'id':voyage.id }) }}">
+                    <button class="btn btn-success float-right fas fa-shopping-cart" > Réserver</button>
+                    </a>
+                </td>
+
+            {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+<br>
+            <html>
+            <head>
+                {% for voyage in voyages %}
+                <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+                <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+
+                <script type="text/javascript">
+                    window.onload = function() {
+                        L.mapquest.key = 'GtMAuVAD2yGyDJ9gKa56B0qvGfaKiTaX';
+
+                        var map = L.mapquest.map('map', {
+                            center: [0, 0],
+                            layers: L.mapquest.tileLayer('map'),
+                            zoom: 14
+                        });
+
+                        L.mapquest.geocoding().geocode('{{ voyage.Destination }}');
+                    }
+                </script>
+                {% endfor %}
+            </head>
+
+            <body style="border: 0; margin: 0;">
+            <div id="map" style="width: 100%; height: 530px;"></div>
+
+            </body>
+            </html>
+
+    </center>
+
+
+
+{% endblock %}
+

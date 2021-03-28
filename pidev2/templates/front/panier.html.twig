@@ -1,0 +1,46 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Voyages{% endblock %}
+
+{% block body %}
+
+<center>
+        <h1> Votre Panier </h1>
+
+        {% if items | length > 0 %}
+            <table class="table" border="1">
+            <thead>
+            <tr>
+                <th><h6>Destination</h6></th>
+                <th><h6>Prix</h6></th>
+                <th><h6>Periode</h6></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.voyage.Destination }}</td>
+                    <td>{{ item.voyage.Prix }}</td>
+                    <td>{{ item.voyage.Periode }}</td>
+                    <td>
+                        <a href="{{ path('removePanier',{'id':item.voyage.id }) }}">
+                            <button class="btn btn-danger btn-sm fas fa-trash">
+                                Supprimer
+                            </button>
+
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+            <p>Le panier est vide</p>
+        {% endif %}
+</center>
+
+
+{% endblock %}
