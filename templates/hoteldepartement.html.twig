@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Options test{% endblock %}
+
+
+{% block body %}
+
+
+    <body class="sidebar-noneoverflow">
+
+
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+
+        <!--  BEGIN CONTENT AREA  -->
+
+        <div >
+            <div class="layout-px-spacing">
+
+                <div class="row layout-top-spacing">
+                    <!--  HOTELS INFO AREA  -->
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-chart-one">
+                            <div class="widget-heading">
+                                <h5 class="">HOTEL DEPARTEMENT ELEMENTS</h5>
+                                <ul class="tabs tab-pills">
+                                    <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Currently</a></li>
+                                </ul>
+                            </div>
+
+                            <div id="div_chart"></div>
+
+
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                                {{ gc_draw(pieChart, 'div_chart') }}
+                                {{ gc_draw(barchart, 'div_chart2') }}
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-chart-two">
+                            <div class="widget-heading">
+                                <h5 class="">HOTELS BY STARS</h5>
+                            </div>
+                            <div class="widget-content">
+                                <div id="div_chart2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+
+                            <div id="openweathermap-widget-11"></div>
+                            <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '2473245',appid: '530a9cc227de19e67de05378ce472466',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <!--  END CONTENT AREA  -->
+
+
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    </body>
+
+    <!-- Mirrored from designreset.com/cork/ltr/demo6/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Feb 2021 19:17:39 GMT -->
+    </html>
+
+{% endblock %}
