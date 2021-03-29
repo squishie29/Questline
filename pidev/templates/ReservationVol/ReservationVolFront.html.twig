@@ -1,0 +1,22 @@
+{% extends 'front.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        {% for R in ReservationVols %}
+
+
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+            
+                <div class="card-body">
+                    <p class="card-text">{{R.id }} </p>
+                    <p class="card-text">{{R.Nombre_personne }} </p>
+                    <p class="card-text"> {{R.Date_res ? R.Date_res|date('Y-m-d H:i:s') : ''}}</p>
+                     <p class="card-text">{{R.id }} </p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

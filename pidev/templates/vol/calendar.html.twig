@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+    vol Calendar-Pepiniere
+<h3 class="tittle-w3l">vols' Calendar
+    <span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+    </span>
+</h3>
+
+    <h3></h3>
+    <br>
+    <br>
+
+
+
+
+
+
+
+
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+
+
+    {% endblock %}
+    <script>
+
+        $(document).ready(function() {
+
+            $('#calendar-holder').fullCalendar({
+                header: {
+                    left: 'prev, today',
+                    center: 'title',
+                    right: 'month, basicWeek, basicDay,'
+                },
+                defaultDate: '{{ 'now'|date('Y-m-d') }}',
+
+                events: [
+                    {
+                        url: 'VolBundle/Vol/LoadvolCalendar',
+                        type: 'POST',
+                        data: {},
+                    }
+                ]
+
+            });
+
+            $('#calendar-holder').fullCalendar('addvolSource',{{ render(controller("VolBundle:Vol:LoadvolCalendar")) }})
+        });
+    </script>
+
+
+    <div id="calendar-holder"></div>
+
+
+{% endblock %}
