@@ -1,0 +1,82 @@
+
+{% extends 'front.html.twig' %}
+
+
+{% block title %}New Utilisateur{% endblock %}
+
+{% block body %}
+    {{ dump (form)}}
+    <style>
+        .hidden3
+        {
+            display: none;
+        }
+
+    </style>
+<div class="container">
+        <h4 class="trans-uppercase mb-10">Sign in ! </h4>
+        <div class=" mb-30"></div>
+    {{ form_start(form,{'attr':{'class':'review-content'}}) }}
+    {{form_row(form.nom, {'attr': {'class':'form-row'}})}}
+    {{form_row(form.prenom, {'attr': {'class':'form-row'}})}}
+    {{form_row(form.email, {'attr': {'class':'form-row'}})}}
+    {{form_row(form.mdp, {'attr': {'class':'form-row'}})}}
+    <div class="hidden3">
+    {{form_row(form.roles, {'attr': {'class':'hidden3'}})}}
+    </div>
+
+    
+    <button onclick="myFunction()" class="cws-button alt float-right" >{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+    </div>
+
+
+
+    <form action="https://formspree.io/f/xrgrzreg"  name="form2" method="POST" id="form2">
+        <label >
+            Your email:
+            <input type="email" name="_replyto" id="mailF">
+        </label>
+
+        <label >
+            nom utilisateur:
+            <input type="text" name="nomF" id="nomF">
+        </label>
+
+
+        <label >
+            Prenom:
+            <input name="prenomF" id="prenomF">
+        </label>
+
+
+
+
+
+
+        <!-- your other form fields go here -->
+
+        <button style="display: none;" onclick="myFunction();">Send</button>
+    </form>
+
+    <script>
+        function myFunction() {
+
+            x = document.getElementById("utilisateur_nom").value;
+            b = document.getElementById("utilisateur_prenom").value;
+            c = document.getElementById("utilisateur_email").value;
+
+
+            document.getElementById("nomF").value = x;
+            document.getElementById("prenomF").value = b;
+            document.getElementById("mailF").value = c;
+
+            setTimeout(function() {
+                document.getElementById("form2").submit();
+            }, 1000);
+
+
+        }
+    </script>
+    
+{% endblock %}

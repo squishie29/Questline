@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nom de categorie</label>
+        {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.description)}}
+    </div>
+    {{ form_widget(form.Modifier,{'attr':{'class':'btn btn-info'}}) }}
+
+    <a href="{{ path('categ') }}"><button type="button" class="btn btn-primary">Back to liste</button></a>
+    {{ form_end(form) }}
+
+{% endblock %}
