@@ -20,11 +20,15 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FrontController extends AbstractController
 {/**
-     *@Route("/", name="front")
+     *@Route("/", name="front2")
      */
     public function index(): Response
     {
-        return $this->render('front.html.twig');
+        return $this->render('front.html.twig', [
+            'controller_name' => 'FrontController',
+
+        ]);
+
     }
     /**
      *@Route("/front", name="front_review")
@@ -34,6 +38,7 @@ class FrontController extends AbstractController
         
         $review = new Review();
         $formreview = $this->createForm(ReviewType::class, $review);
+
         $formreview->handleRequest($request);
 
         if ($formreview->isSubmitted() && $formreview->isValid()) {
@@ -49,6 +54,7 @@ class FrontController extends AbstractController
             'reviews' => $review,
             'formreview' => $formreview->createView(),
             'reviewss' => $reviewRepository->findAll(),
+            'user' => $user = $this->get('security.token_storage')->getToken()->getUser(),
         ]);
     }
 

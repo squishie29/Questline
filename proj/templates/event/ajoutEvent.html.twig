@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nomevent</label>
+        {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.nom,{'attr':{'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Destination</label>
+        {{ form_widget(form.destination,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.destination,{'attr':{'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Prix</label>
+        {{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.prix,{'attr':{'class':'form-control'}}) }}
+
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Categorie</label>
+        {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.categorie,{'attr':{'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">nombre des places</label>
+        {{ form_widget(form.nbr_places,{'attr':{'class':'form-control'}}) }}
+        {{ form_errors(form.nbr_places,{'attr':{'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Image</label>
+        {{ form_widget(form.image) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-info'}}) }}
+        <a href="{{ path('event') }}"><button type="button" class="btn btn-primary">Back to liste</button></a>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

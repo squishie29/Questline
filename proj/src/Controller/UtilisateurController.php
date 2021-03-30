@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
+use Symfony\Component\Serializer\Normalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 /**
  * @Route("/utilisateur")
@@ -73,7 +78,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="utilisateur_show", methods={"GET"})
+     * @Route("/{id}", name="utilisateur_show", methods={"GET"},requirements={"id"="\d+"})
      */
     public function show(Utilisateur $utilisateur): Response
     {
@@ -83,7 +88,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"},requirements={"id"="\d+"})
      */
     public function edit(Request $request, Utilisateur $utilisateur): Response
     {
@@ -115,4 +120,18 @@ class UtilisateurController extends AbstractController
 
         return $this->redirectToRoute('utilisateur_index');
     }
+    /**
+     * @Route("/searchStudentx", name="searchStudentx")
+     */
+    public function searchUser(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Utilisateur::class);
+        $requestString=$request->get('searchValue');
+        $students = $repository->findUserByNom($requestString);
+        $jsonContent = $Normalizer->normalize($students, 'json',['groups'=>'utilisateurs']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
+
 }

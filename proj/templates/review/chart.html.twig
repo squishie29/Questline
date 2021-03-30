@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Charte graphique{% endblock %}
+<a href="{{ path('chart1') }}">Charte 1</a>
+<a href="{{ path('chart2') }}">Charte 2</a>
+<a href="{{ path('chart3') }}">Charte 3</a>
 {{ render_chart(chart) }}
 {% block body %}
 {% endblock %}

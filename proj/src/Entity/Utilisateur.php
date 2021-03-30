@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  */
@@ -17,6 +18,7 @@ class Utilisateur implements UserInterface,\Serializable
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("utilisateurs")
      */
     private $id;
 
@@ -28,6 +30,7 @@ class Utilisateur implements UserInterface,\Serializable
      * match=false,
      * message="Your name cannot contain a number"
      * )
+     * @Groups("utilisateurs")
      */
     private $nom;
 
@@ -39,33 +42,75 @@ class Utilisateur implements UserInterface,\Serializable
      *     match=false,
      *     message="Your name cannot contain a number"
      * )
+     * @Groups("utilisateurs")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("utilisateurs")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("utilisateurs")
      */
     private $mdp;
 
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="idUtil", orphanRemoval=true)
+     * @Groups("utilisateurs")
      */
     private $idrev;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("utilisateurs")
      */
     private $img;
 
     /**
      * @ORM\Column(type="array")
+     *@Groups("utilisateurs")
      */
     private $roles = [];
+
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationHotel::class, mappedBy="userId", orphanRemoval=true)
+     */
+    private $reservationHotels;
+
+    /**
+     * @return Collection|ReservationHotel[]
+     */
+    public function getReservationHotels(): Collection
+    {
+        return $this->reservationHotels;
+    }
+
+    public function addReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if (!$this->reservationHotels->contains($reservationHotel)) {
+            $this->reservationHotels[] = $reservationHotel;
+            $reservationHotel->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if ($this->reservationHotels->removeElement($reservationHotel)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationHotel->getUserId() === $this) {
+                $reservationHotel->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
 
     public function __construct()
     {

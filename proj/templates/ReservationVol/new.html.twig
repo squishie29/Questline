@@ -1,0 +1,58 @@
+
+{% block body %}
+
+    {{ include('ReservationVol/_form.html.twig') }}
+    <!-- modify this form HTML and place wherever you want your form -->
+
+    <form
+            action="https://formspree.io/f/xgerwjny"
+            method="POST"
+    >
+        <label>
+            Your email:
+            <input type="text" id="personneF" name="_replyto">
+        </label>
+
+        <label>
+            Your email:
+            <input type="text" id="dateF" name="_replyto">
+        </label>
+
+        <label>
+            Your email:
+            <input type="text" id="volF" name="_replyto">
+        </label>
+
+
+
+
+        <!-- your other form fields go here -->
+
+        <button type="submit">Send</button>
+    </form>
+
+    <button onclick="myFunction()">aaaa</button>
+    <script>
+       function myFunction() {
+
+            x =document.getElementById("reservation_vol_nombre_personne").value;
+            a =document.getElementById("reservation_vol_date_res_date_month").value;
+            b =document.getElementById("reservation_vol_date_res_date_day").value;
+            c =document.getElementById("reservation_vol_date_res_date_year").value;
+            d =document.getElementById("reservation_vol_date_res_time_hour").value;
+            e =document.getElementById("reservation_vol_date_res_time_hour").value;
+            f =document.getElementById("reservation_vol_date_res_time_minute").value;
+
+
+            document.getElementById("personneF").value =a;
+
+            //document.getElementById("form1").submit();
+
+           /* setTimeout(function() {
+                document.getElementById("form2").submit();
+            }, 1000);*/
+        }
+    </script>
+        
+{% endblock %}
+

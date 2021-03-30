@@ -123,6 +123,16 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/symfony/ux-chartjs" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
+      <path value="$PROJECT_DIR$/vendor/omines/datatables-bundle" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pXJEnKlQwG62u1kr2gJugpQ7BJ" />
@@ -133,10 +143,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\asus\Desktop\PROJET\proj\templates" />
+      <recent name="C:\Users\asus\Desktop\PROJET\proj\src\Repository" />
+      <recent name="C:\Users\asus\Desktop\PROJET\proj\src\Form" />
+      <recent name="C:\Users\asus\Desktop\PROJET\proj\src\Controller" />
+      <recent name="C:\Users\asus\Desktop\PROJET\proj\src\Entity" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -158,7 +177,13 @@
       <workItem from="1616927031819" duration="1742000" />
       <workItem from="1616928976128" duration="1056000" />
       <workItem from="1616938593927" duration="3394000" />
-      <workItem from="1616942118630" duration="1012000" />
+      <workItem from="1616942118630" duration="12321000" />
+      <workItem from="1616962584538" duration="1729000" />
+      <workItem from="1617006178619" duration="2348000" />
+      <workItem from="1617013351665" duration="19302000" />
+      <workItem from="1617061505515" duration="259000" />
+      <workItem from="1617117899846" duration="295000" />
+      <workItem from="1617118212640" duration="17099000" />
     </task>
     <servers />
   </component>
@@ -174,13 +199,17 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="187" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.864@0.0.1536.864" timestamp="1615464222546" />
-    <state x="478" y="31" width="599" height="801" key="find.popup" timestamp="1616940386471">
+    <state x="478" y="31" width="599" height="801" key="find.popup" timestamp="1617045538319">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="478" y="31" width="599" height="801" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1616940386471" />
-    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1615464020670">
+    <state x="478" y="31" width="599" height="801" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1617045538319" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1617029753607">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1615464020670" />
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1617029753607" />
+    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1617123478962">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1617123478962" />
   </component>
 </project>

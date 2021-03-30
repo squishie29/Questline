@@ -1,6 +1,6 @@
 {% extends 'front.html.twig' %}
   
-{% block body %} 
+{% block body %}
     <div class="content-body">
       <section class="page-section pt-0 pb-50">
         <div class="container">
@@ -154,13 +154,15 @@
 
                 {{form_row(formreview.comment, {'attr': {'class':'form-row'}})}}
                 {{form_row(formreview.rating, {'attr': {'class':'form-row'}})}}
-                {{form_row(formreview.idUtil, {'attr': {'class':'form-row'}})}}
+                {{form_row(formreview.idUtil)}}
                 
                 
         
         <button class="cws-button alt float-right">{{ button_label|default('Save') }}</button>
         {{ form_end(formreview) }} 
         </div>
+          {{ dump(formreview.idUtil) }}
+          {{ dump(formreview.idUtil) }}
 
         
         <!-- ! review -->

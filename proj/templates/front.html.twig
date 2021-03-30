@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6 col-sm-5 text-right">
                     <div class="top-right-wrap">
-                    <div class="top-login"><a href="{{ path('sign') }}">Sign in !</a></div>
+                    <div class=""><a href="{{ path('sign') }}">Sign in !</a></div>
                         <div class="top-login"><a href="#">My Account</a></div>
                         <div class="curr-wrap dropdown">
                             <div>
@@ -92,12 +92,16 @@
                     <!-- End Item With Sub-->
                     <li class="slash">/</li>
                     <!-- Item With Sub-->
-                    <li><a href="/front/hotels-search.html" class="mn-has-sub">Hotels <i class="fa fa-angle-down button_open"></i></a>
+                    <li><a href="{{ path('eventFront') }}" class="mn-has-sub"> Evennemnts <i class="fa fa-angle-down button_open"></i></a>
                         <!-- Sub-->
                         <ul class="mn-sub">
-                            <li><a href="/front/hotels-list.html">Hotels list</a></li>
-                            <li><a href="/front/hotels-search.html">Hotels search</a></li>
-                            <li><a href="/front/hotels-details.html">Hotels details</a></li>
+                            <li>
+                                <a href="{{ path('eventFront') }}">mes evennements</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('mesReservation') }}">Reservation</a>
+                            </li>
+
                         </ul>
                         <!-- End Sub-->
                     </li>
