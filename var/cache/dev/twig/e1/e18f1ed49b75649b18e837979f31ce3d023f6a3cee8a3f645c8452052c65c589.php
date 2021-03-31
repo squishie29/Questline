@@ -89,7 +89,7 @@ class __TwigTemplate_3bcff346a754215cfad7e3a72d2260fa7eb27d05a8cf901230ea5e0131c
 
         ";
         // line 17
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 17, $this->source); })()), "nbr_participant", [], "any", false, false, false, 17), 'widget', ["attr" => ["class" => "form-control", "max" => (isset($context["nbr"]) || array_key_exists("nbr", $context) ? $context["nbr"] : (function () { throw new RuntimeError('Variable "nbr" does not exist.', 17, $this->source); })())]]);
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 17, $this->source); })()), "nbr_participant", [], "any", false, false, false, 17), 'widget', ["attr" => ["class" => "form-control", "min" => 1, "max" => (isset($context["nbr"]) || array_key_exists("nbr", $context) ? $context["nbr"] : (function () { throw new RuntimeError('Variable "nbr" does not exist.', 17, $this->source); })())]]);
         echo "
     </div>
     <div class=\"form-group\">
@@ -145,7 +145,7 @@ class __TwigTemplate_3bcff346a754215cfad7e3a72d2260fa7eb27d05a8cf901230ea5e0131c
     <div class=\"form-group\">
         <label for=\"exampleFormControlInput1\">Nombre des participants</label>
 
-        {{ form_widget(form.nbr_participant,{'attr':{'class':'form-control','max':nbr}}) }}
+        {{ form_widget(form.nbr_participant,{'attr':{'class':'form-control','min':1,'max':nbr}}) }}
     </div>
     <div class=\"form-group\">
         <button class=\"cws-button alt float-right\" >{{ button_label|default('Reserver') }}</button>

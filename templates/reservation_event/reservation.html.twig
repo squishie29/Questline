@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .hiddenAhmed
+        {
+            display: none;
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p>Nombre des places restants {{ nbrRestant }}</p>
+    {{ form_start(form, {'attr' : {'id': 'form3'}}) }}
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nombre des participants</label>
+        {{ form_widget(form.nbr_participant,{'attr':{'class':'form-control','min':1,'max':nbrRestant}}) }}
+    </div>
+    <div class="form-group">
+        <button onclick="myFunction()" class="cws-button alt float-right" >{{ button_label|default('Reserver') }}</button>
+        {{ form_end(form) }}
+
+
+
+    </div>
+
+    {{ form_end(form) }}
+
+
+    <form class="hiddenAhmed"
+          action="https://formspree.io/f/xjvjbjlk"
+          method="POST"
+          id="form1"
+          name="form1"
+          target="_blank"
+    >
+        <label class="hidden3">
+            Your email:
+            <input type="email"  id="mail2" name="nombre des participants">
+        </label>
+        <label>
+            Your message:
+            <input name="confirmation" id="conf2">
+        </label>
+
+        <!-- your other form fields go here -->
+
+        <button type="submit">Send</button>
+    </form>
+    <script>
+        function myFunction() {
+
+            x = document.getElementById("reservation_nbr_participant").value;
+
+
+            document.getElementById("mail2").value = x;
+            if ( (x<={{ nbrRestant }}) && (x>0) )
+            {
+
+                document.getElementById("conf2").value = "reservation confirmer!";
+                document.getElementById("mail2").value = x;
+
+
+                setTimeout(function() {
+                    document.getElementById("form1").submit();
+                }, 100);
+            }
+
+
+
+
+
+
+        }
+    </script>
+{% endblock %}

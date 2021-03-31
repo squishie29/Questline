@@ -65,7 +65,13 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        echo "    <br>
+        echo "    <style>
+        .hiddenAhmed
+        {
+            display: none;
+        }
+    </style>
+    <br>
     <br>
     <br>
     <br>
@@ -76,28 +82,28 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
     <br>
 
     <p>Nombre des places restants ";
-        // line 13
-        echo twig_escape_filter($this->env, (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 13, $this->source); })()), "html", null, true);
+        // line 19
+        echo twig_escape_filter($this->env, (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 19, $this->source); })()), "html", null, true);
         echo "</p>
     ";
-        // line 14
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), 'form_start', ["attr" => ["id" => "form3"]]);
+        // line 20
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 20, $this->source); })()), 'form_start', ["attr" => ["id" => "form3"]]);
         echo "
     <div class=\"form-group\">
         <label for=\"exampleFormControlInput1\">Nombre des participants</label>
         ";
-        // line 17
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 17, $this->source); })()), "nbr_participant", [], "any", false, false, false, 17), 'widget', ["attr" => ["class" => "form-control", "min" => 1, "max" => (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 17, $this->source); })())]]);
+        // line 23
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 23, $this->source); })()), "nbr_participant", [], "any", false, false, false, 23), 'widget', ["attr" => ["class" => "form-control", "min" => 1, "max" => (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 23, $this->source); })())]]);
         echo "
     </div>
     <div class=\"form-group\">
         <button onclick=\"myFunction()\" class=\"cws-button alt float-right\" >";
-        // line 20
-        echo twig_escape_filter($this->env, (((isset($context["button_label"]) || array_key_exists("button_label", $context))) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 20, $this->source); })()), "Reserver")) : ("Reserver")), "html", null, true);
+        // line 26
+        echo twig_escape_filter($this->env, (((isset($context["button_label"]) || array_key_exists("button_label", $context))) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 26, $this->source); })()), "Reserver")) : ("Reserver")), "html", null, true);
         echo "</button>
         ";
-        // line 21
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), 'form_end');
+        // line 27
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), 'form_end');
         echo "
 
 
@@ -105,18 +111,19 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
     </div>
 
     ";
-        // line 27
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), 'form_end');
+        // line 33
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 33, $this->source); })()), 'form_end');
         echo "
-    <h1>test</h1>
 
-    <form
-            action=\"https://formspree.io/f/xjvjbjlk\"
-            method=\"POST\"
-            id=\"form1\"
-            name=\"form1\"
+
+    <form class=\"hiddenAhmed\"
+          action=\"https://formspree.io/f/xjvjbjlk\"
+          method=\"POST\"
+          id=\"form1\"
+          name=\"form1\"
+          target=\"_blank\"
     >
-        <label>
+        <label class=\"hidden3\">
             Your email:
             <input type=\"email\"  id=\"mail2\" name=\"nombre des participants\">
         </label>
@@ -129,7 +136,6 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
         <button type=\"submit\">Send</button>
     </form>
-<button onclick=\"myFunction()\">azertygh</button>
     <script>
         function myFunction() {
 
@@ -138,8 +144,8 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
             document.getElementById(\"mail2\").value = x;
             if ( (x<=";
-        // line 57
-        echo twig_escape_filter($this->env, (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 57, $this->source); })()), "html", null, true);
+        // line 63
+        echo twig_escape_filter($this->env, (isset($context["nbrRestant"]) || array_key_exists("nbrRestant", $context) ? $context["nbrRestant"] : (function () { throw new RuntimeError('Variable "nbrRestant" does not exist.', 63, $this->source); })()), "html", null, true);
         echo ") && (x>0) )
             {
 
@@ -159,8 +165,6 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
         }
     </script>
-
-
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -182,13 +186,19 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
     public function getDebugInfo()
     {
-        return array (  142 => 57,  109 => 27,  100 => 21,  96 => 20,  90 => 17,  84 => 14,  80 => 13,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  148 => 63,  115 => 33,  106 => 27,  102 => 26,  96 => 23,  90 => 20,  86 => 19,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 {% block body %}
+    <style>
+        .hiddenAhmed
+        {
+            display: none;
+        }
+    </style>
     <br>
     <br>
     <br>
@@ -214,15 +224,16 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
     </div>
 
     {{ form_end(form) }}
-    <h1>test</h1>
 
-    <form
-            action=\"https://formspree.io/f/xjvjbjlk\"
-            method=\"POST\"
-            id=\"form1\"
-            name=\"form1\"
+
+    <form class=\"hiddenAhmed\"
+          action=\"https://formspree.io/f/xjvjbjlk\"
+          method=\"POST\"
+          id=\"form1\"
+          name=\"form1\"
+          target=\"_blank\"
     >
-        <label>
+        <label class=\"hidden3\">
             Your email:
             <input type=\"email\"  id=\"mail2\" name=\"nombre des participants\">
         </label>
@@ -235,7 +246,6 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
         <button type=\"submit\">Send</button>
     </form>
-<button onclick=\"myFunction()\">azertygh</button>
     <script>
         function myFunction() {
 
@@ -262,8 +272,6 @@ class __TwigTemplate_080726cc69c24880688986e263c01d5a54993a1abeff71cff8d59d97e2c
 
         }
     </script>
-
-
 {% endblock %}", "reservation_event/reservation.html.twig", "C:\\wamp64\\www\\devahmed\\templates\\reservation_event\\reservation.html.twig");
     }
 }
