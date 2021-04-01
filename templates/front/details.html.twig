@@ -1,0 +1,168 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Hello FrontController!{% endblock %}
+
+{% block body %}
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            L.mapquest.key = 'eXp9wRtoKlG1COwGgDy3TWPUHMm6GwGL';
+
+            var map = L.mapquest.map('map', {
+                center: [0, 0],
+                layers: L.mapquest.tileLayer('map'),
+                zoom: 14
+            });
+
+            L.mapquest.geocoding().geocode('{{ hotel.adress}}');
+        }
+    </script>
+
+
+    <div class="content-body">
+        <section class="page-section pt-0 pb-50">
+            <div class="container">
+                <div class="menu-widget with-switch mt-30 mb-30">
+                    <ul class="magic-line">
+                        <li class="current_item"><a href="#overview" class="scrollto">Overview</a></li>
+                        <li><a href="#prices" class="scrollto">Prices</a></li>
+                        <li><a href="#location" class="scrollto">Location</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div id="flex-slider" class="flexslider">
+                    <ul class="slides">
+
+
+                        {% for gallery in galleries %}
+                            {% if hotel.name==gallery.hotel_id %}
+                            <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
+                            {% endif %}
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="flex-carousel" class="flexslider">
+                    <ul class="slides">
+                        {% for gallery in galleries %}
+                            {% if hotel.name==gallery.hotel_id %}
+                                <li><img src="/gallery/{{ gallery.imgpath }}" alt></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="container mt-30">
+                <h4 class="mb-20">{{ hotel.name }}</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="mb-15">{{ hotel.description|raw }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-gray-3 p-30-40">
+                            <ul class="style-1 mb-0">
+                                 {% for room in rooms %}
+                                     {% if hotel.name==room.idHotel %}
+                                         {% for option in options %}
+                                                 {% if room.id2==option.room_id %}
+                                                     <li> {{ option.description}}</li>
+                                                     <br>
+                                                 {% endif %}
+                                             {% endfor %}
+
+                                     {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- section prices-->
+            <div id="prices" class="container mb-50 mt-40">
+                <div class="search-hotels room-search pattern">
+                    <div class="search-room-title">
+                        <h5>Choose your room</h5>
+                    </div>
+                    <div class="tours-container">
+
+                    </div>
+                </div>
+                <div class="room-table">
+                    <table class="table alt-2">
+                        <thead>
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Max.</th>
+                            <th>Options</th>
+                            <th>Today's price</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for room in rooms %}
+                        {% if hotel.name==room.idHotel %}
+                        <tr>
+
+                            <td>
+                                <h6>{{ room.type }}</h6>
+
+                            </td>
+                            <td>
+                                <div class="table-icon">
+                                    {% for i in 1..room.nbPersonnes %}
+                                    <i class="flaticon-people"></i>
+                                        {% endfor %}
+                                </div>
+
+
+                            </td>
+                            <td>
+
+                                <ul class="style-1">
+                            {% for option in options %}
+                                    {% if room.id2==option.room_id %}
+                                        <li>{{ option.description}}</li>
+                                        <br>
+                                    {% endif %}
+                                {% endfor %}
+
+
+                                </ul>
+
+                            </td>
+                            <td class="room-price">{{ room.prix }} TND</td>
+
+                             <td> <p>{{ room.description }}</p></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+                    <div style="display:flex;justify-content:space-around;margin-top: 10px;">
+                        <a href="{{ path('reservationNew', {'id': hotel.id}) }}" class="cws-button alt " style="width: 20vw;">Book now </a>
+                    </div>
+                </div>
+            </div>
+            <!-- section location-->
+            <div id="location" class="container mb-50">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="trans-uppercase mb-10">Location</h4>
+                        <div class="cws_divider mb-30"></div>
+                        <div id="map" style="width: 100%; height: 530px;"></div>
+                        <ul class="icon inline mt-20">
+                            <li> <a href="#">{{ hotel.adress}}<i class="flaticon-suntour-map"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+{% endblock %}
