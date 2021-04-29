@@ -6,6 +6,7 @@
 package gestionVoyages.interfaces;
 
 import gestionVoyages.entities.Voyage;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
@@ -20,6 +21,6 @@ public interface IService <T>{
     
     public void delete(T voy);
     
-    public void update(T voy);
+   
     
 }

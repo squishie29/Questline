@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author acer
  */
-public class PIJava_1 extends Application {
+public class GuideMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

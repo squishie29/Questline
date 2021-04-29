@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 /**
  *
@@ -44,27 +45,43 @@ public class VoyageService implements IService<Voyage>{
         }    
     }
     
-    @Override
-    public boolean update(Voyage v, int id) throws SQLException {
-    
-    String sql = "UPDATE voyage SET destination=?, prix=?, periode=? WHERE id=?";
-
-        PreparedStatement pst = cnx.prepareStatement(sql);
+    /*@Override
+    public void update(int id, String t){
+   
+        try {
+           
+            String requete = "UPDATE type_reclamation SET type_reclamation=? where id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+           
+            pst.setString(1, t);
+            pst.setInt(2,id);
         
-            pst.setString(1, v.getDestination());
-            pst.setInt(2, v.getPrix());
-            pst.setString(3, v.getPeriode());
-            pst.setString(4, v.getImage_name());
-       
-
-        int rowsUpdated = pst.executeUpdate();
-        
-        if (rowsUpdated > 0) {
-            System.out.println("An existing User was updated successfully!");
+            pst.executeUpdate();
+            System.out.println("Type modifié !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        return true;
+   
+    }*/
+    
+ 
+    public void updateVoyage(int id, String destination){
+   
+        try {
+           
+            String requete = "UPDATE Voyage SET destination=? where id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+           
+            pst.setString(1, destination);
+            pst.setInt(2,id);
+        
+            pst.executeUpdate();
+            System.out.println("Modification effectuée!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+   
     }
-
     
      @Override
         
@@ -108,6 +125,56 @@ public class VoyageService implements IService<Voyage>{
         }
         return (voyages);
     }
+
+    /*@Override
+    public void search(Voyage v) {
+        int id = 0;
+        
+        try{
+            
+            String requete = "SELECT * FROM Voyage WHERE id= ?";
+            
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, v.getId());
+            ResultSet rs = pst.executeQuery();
+                        
+            if(rs.next())
+            {
+                id = rs.getInt(1);
+            }
+            
+            }
+            
+            catch (SQLException ex) {
+            Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }*/
     
-   
+    
+    public ObservableList<Voyage> trier() {
+        
+         ObservableList<Voyage> voyages = FXCollections.observableArrayList();
+        String req = "SELECT * FROM Voyage order by prix";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rst = st.executeQuery(req);
+            
+            while (rst.next()){
+                Voyage v = new Voyage();
+                v.setId(rst.getInt("id"));
+                v.setDestination(rst.getString("destination"));
+                v.setPrix(rst.getInt("prix"));
+                v.setPeriode(rst.getString("periode"));
+                v.setImage_name(rst.getString("image_name"));
+                voyages.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (voyages);
+    }
+
+    
 }

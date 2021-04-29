@@ -30,6 +30,14 @@ public class Guide {
         this.num_tel = num_tel;
     }
 
+    public Guide(int voyage_id, String nom, String prenom, String email, int num_tel) {
+        this.voyage_id = voyage_id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.num_tel = num_tel;
+    }
+
     public int getId() {
         return id;
     }

@@ -15,16 +15,17 @@ import javafx.stage.Stage;
  *
  * @author acer
  */
-public class PIJava extends Application {
+public class VoyageMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VoyageCl.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
+        new animatefx.animation.RollIn(root).play();
     }
 
     /**
